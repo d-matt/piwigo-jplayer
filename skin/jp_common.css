@@ -1,0 +1,13 @@
+/* center the player as it is not included in the skin.
+   The player min-width will be 480px (defined in the jp-video-270p css class)
+   so if the video is smaller we need to center it inside the player.
+*/
+div.jp-audio, div.jp-video, .jp-jplayer {
+  margin: 0 auto;
+}
+
+/* Force the video background to be black */
+.jp-type-single, .jp-type-playlist {
+  background-color: #000;
+}
+
