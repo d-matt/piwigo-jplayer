@@ -10,11 +10,14 @@
       },
       supplied: {/literal}"{$TYPE}"{literal},
       swfPath: {/literal}"{$JPLAYER_PATH}/js/"{literal},
-      wmode: "window",
+      {/literal}{if $IS_VIDEO}{literal}
       size: {
         width: {/literal}"{$WIDTH}"{literal},
         height: {/literal}"{$HEIGHT}"{literal},
       }
+      {/literal}{else}{literal}
+      wmode: "window",
+      {/literal}{/if}{literal}
     });
   });
   //]]>

@@ -75,9 +75,12 @@ function render_media($content, $picture) {
     $fileinfo = $getID3->analyze($picture['current']['path']);
 
     $extension = strtolower(get_extension($picture['current']['path']));
+    $is_video = False;
+
 
     if(isset($fileinfo['video'])) {
         // -- video file --
+        $is_video = True;
         if ($extension == 'webm') $extension = 'webmv'; 
         if ($extension == 'mp4')  $extension = 'm4v';
 
@@ -139,6 +142,7 @@ function render_media($content, $picture) {
             'HEIGHT'           => $height . 'px',
             'TYPE'             => $extension,
             'AUTOPLAY'         => $AUTOPLAY,
+            'IS_VIDEO'         => $is_video,
         )
     );
 

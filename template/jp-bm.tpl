@@ -6,7 +6,7 @@
 {include file="`$JPLAYER_FULLPATH`/template/jplayer.tpl"}
 {/html_head}
 <div id="jp_container_1" class="jp-video jp-video-270p" style="width:{$WIDTH}; min-width:480px">
-  <div class="jp-type-playlist">
+  <div class="jp-type-single">
     <div id="jquery_jplayer_1" class="jp-jplayer"></div>
     <div class="jp-gui">
       <div class="jp-video-play">
@@ -33,8 +33,10 @@
             <div class="jp-volume-bar-value"></div>
           </div>
           <ul class="jp-toggles">
+            {if $IS_VIDEO}
             <li><a href="javascript:;" class="jp-full-screen" tabindex="1" title="full screen">full screen</a></li>
             <li><a href="javascript:;" class="jp-restore-screen" tabindex="1" title="restore screen">restore screen</a></li>
+            {/if}
             <li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li>
             <li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>
           </ul>
