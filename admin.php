@@ -12,6 +12,7 @@ $skin = $conf['jplayer_skin'];
 $available_skins = array(
     'bm' => 'Blue Monday',
     'pf' => 'Pink Flag',
+    'naive' => 'naive',
 );
 
 // Update conf if submitted in admin site
