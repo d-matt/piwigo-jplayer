@@ -45,6 +45,9 @@
         <div class="jp-title">
           <ul>
             <li>{$current.TITLE}</li>
+            {if isset($COMMENT_IMG)}
+            <li><blockquote>{$COMMENT_IMG|@strip_tags:false|@replace:'"':' '}</blockquote></li>
+            {/if}
           </ul>
         </div>
       </div>
