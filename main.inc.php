@@ -54,7 +54,8 @@ function jplayer_admin_menu($menu)
   return $menu;
 }
 
-function render_media($content, $picture) {
+function render_media($content, $picture)
+{
     global $template, $picture, $page, $conf, $user, $refresh;
 
     // do nothing if the current picture is actually an image !
@@ -151,7 +152,8 @@ function render_media($content, $picture) {
     return $jp_content;
 }
 
-function get_mimetype_icon ($location, $element_info) {
+function get_mimetype_icon ($location, $element_info)
+{
     if ( empty( $element_info['tn_ext'] ) ) {
         $extension = strtolower(get_extension($element_info['path']));
         if ( $extension == 'webm') {
@@ -165,4 +167,5 @@ function get_mimetype_icon ($location, $element_info) {
     }
     return $location;
 }
+
 ?>
