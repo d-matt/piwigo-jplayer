@@ -12,7 +12,7 @@ Upload this in ``your-gallery/plugins/`` dir.
 
 * download the archive from github (https://github.com/d-matt/piwigo-jplayer/downloads) 
 
-        wget -O naive.tar.gz https://github.com/d-matt/piwigo-jplayer/tarball/master
+        wget -O piwigo-jplayer.tar.gz https://github.com/d-matt/piwigo-jplayer/tarball/master
 
 * or clone the project 
 
@@ -60,6 +60,17 @@ Credit
 
 * [jPlayer](http://jplayer.org/)
 * [getid3](http://getid3.sourceforge.net/)
+
+Changelog
+---------
+
+### Version 0.2 ()
+
+- Add autoplay parameter
+
+### Version 0.1 (2012/01/02)
+	
+- Initial release 
 
 Licence
 -------
