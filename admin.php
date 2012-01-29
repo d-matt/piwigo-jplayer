@@ -7,6 +7,7 @@ global $template, $conf;
 
 // Load parameter
 $skin = $conf['jplayer_skin'];
+$autoplay = $conf['jplayer_autoplay'];
 
 // Available skins
 $available_skins = array(
@@ -16,19 +17,27 @@ $available_skins = array(
 );
 
 // Update conf if submitted in admin site
-if (isset($_POST['submit']) && !empty($_POST['skin'])) {
-    $query = 'UPDATE ' . CONFIG_TABLE . 
-             ' SET value="' . $_POST['skin'] . '" 
-              WHERE param="jplayer_skin"';
+if (isset($_POST['submit'])) { 
+    if (!empty($_POST['skin'])) {
+        $query = 'UPDATE ' . CONFIG_TABLE . 
+                 ' SET value="' . $_POST['skin'] . '" 
+                  WHERE param="jplayer_skin"';
+        pwg_query($query);
+        // keep this selected in the admin form 
+        $skin = $_POST['skin'];
+    }
+    $autoplay = isset($_POST['autoplay']) ? "true" : "false";
+    $query = 'UPDATE ' . CONFIG_TABLE .
+             ' SET value="' . $autoplay . '" 
+              WHERE param="jplayer_autoplay"';
     pwg_query($query);
-    // keep this selected in the admin form 
-    $skin = $_POST['skin'];
 }
 
 // 
 $template->assign(array(
     'SELECTED_SKIN'   => $skin,
     'AVAILABLE_SKINS' => $available_skins,
+    'AUTOPLAY'        => $autoplay,
 ));
 
 // Add our template to the global template

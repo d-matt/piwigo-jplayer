@@ -117,7 +117,12 @@ function render_media($content, $picture)
     // Slideshow : The video needs to be launch automatically in
     // slideshow mode. The refresh of the page is set to the
     // duration of the video.
-    $AUTOPLAY = '';
+    if (isset($conf['jplayer_autoplay']) && $conf['jplayer_autoplay']) {
+        $AUTOPLAY =  'play';
+    }
+    else {
+        $AUTOPLAY = '';
+    }
     if ( $page['slideshow'] ) {
         $refresh = $fileinfo['playtime_seconds'];
         $AUTOPLAY = 'play';
