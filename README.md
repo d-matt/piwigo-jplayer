@@ -8,7 +8,9 @@ Piwigo-jplayer is a plugin for the [Piwigo](http://piwigo.org/) web gallery that
 Installation
 ------------
 
-Upload this in ``your-gallery/plugins/`` dir.
+This plugin needs to be uploaded in the ``your-gallery/plugins/`` dir.
+
+* get it directly from the plugin section of the admin site or grab it from the [Piwigo website](http://piwigo.org/ext/extension_view.php?eid=594)
 
 * download the archive from github (https://github.com/d-matt/piwigo-jplayer/downloads) 
 
