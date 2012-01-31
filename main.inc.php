@@ -161,11 +161,6 @@ function get_mimetype_icon ($location, $element_info)
 {
     if ( empty( $element_info['tn_ext'] ) ) {
         $extension = strtolower(get_extension($element_info['path']));
-        if ( $extension == 'webm') {
-            $location= 'plugins/'
-                       . basename(dirname(__FILE__))
-                       . '/mimetypes/webm.png';
-        }
         $location= 'plugins/'
                    . basename(dirname(__FILE__))
                    . '/mimetypes/' . $extension . '.png';
