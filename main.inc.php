@@ -59,8 +59,14 @@ function render_media($content, $picture)
     global $template, $picture, $page, $conf, $user, $refresh;
 
     // do nothing if the current picture is actually an image !
-    if ( @$picture['current']['is_picture'] ) return $content;
-
+    if ( // piwigo < 2.4
+         @$picture['current']['is_picture'] ||
+         // piwigo > 2.4 
+         ( array_key_exists('src_image', @$picture['current']) 
+           && @$picture['current']['src_image']->is_original() )
+       ) {
+        return $content;
+    }
     // In case, the we handle a large video, we define a MAX_WIDTH
     // variable to limit the display size.
     if (isset($user['maxwidth']) and $user['maxwidth']!='') {
