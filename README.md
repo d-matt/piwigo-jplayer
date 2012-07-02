@@ -5,6 +5,8 @@ jPlayer port for piwigo. Play your videos and audio tracks on your web gallery!
 
 Piwigo-jplayer is a plugin for the [Piwigo](http://piwigo.org/) web gallery that allows you to render various video and audio files within your piwigo install.
 
+See it in action [here] (http://dev.chezmatthi.eu/piwigo-jplayer/)
+
 Installation
 ------------
 
@@ -49,10 +51,12 @@ Please read the documentation on jplayer website : http://jplayer.org/latest/dev
 
 Usage
 -----
-Basically, medias will be inserted in a same way as standard pictures : 
+
+Basically, medias will be added to your gallery just like standard pictures: 
 
 * Uploads the videos in the `galleries` dir
-* The thumbnail is formed as usual `thumbnail/TN-base_name.jpg`
+* In piwigo < 2.4, the thumbnail is named `thumbnail/TN-base_name.jpg`
+* In piwigo > 2.4, the thumbnail is named `pwg_representative/base_name.jpg`
 * The HD can be inserted as usual as well in the `pwg_high`
 * Finally use the sync button
 

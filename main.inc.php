@@ -38,7 +38,11 @@ $conf['file_ext'] = array_merge($conf['file_ext'], $jp_extensions);
 add_event_handler('render_element_content', 'render_media', 40, 2 );
 
 // Hook to display a fallback thumbnail if not defined
+// piwigo < 2.4  
 add_event_handler('get_thumbnail_location', 'get_mimetype_icon', 60, 2);
+// piwigo > 2.4
+add_event_handler('get_mimetype_location', 'get_mimetype_icon', 60, 2);
+
 
 // Hook to a admin config page
 add_event_handler('get_admin_plugin_menu_links', 'jplayer_admin_menu' );
@@ -165,12 +169,22 @@ function render_media($content, $picture)
 
 function get_mimetype_icon ($location, $element_info)
 {
-    if ( empty( $element_info['tn_ext'] ) ) {
-        $extension = strtolower(get_extension($element_info['path']));
+    if ( is_array($element_info) ) {
+        // Piwigo < 2.4
+        if ( empty( $element_info['representative_ext'] )  ) {
+            $extension = strtolower(get_extension($element_info['path']));
+            $location= 'plugins/'
+                       . basename(dirname(__FILE__))
+                       . '/mimetypes/' . $extension . '.png';
+       }
+    } 
+    else {
+        // Piwigo > 2.4
         $location= 'plugins/'
                    . basename(dirname(__FILE__))
-                   . '/mimetypes/' . $extension . '.png';
+                   . '/mimetypes/' . $element_info . '.png';
     }
+
     return $location;
 }
 
