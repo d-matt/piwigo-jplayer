@@ -57,7 +57,6 @@ Basically, medias will be added to your gallery just like standard pictures:
 * Uploads the videos in the `galleries` dir
 * In piwigo < 2.4, the thumbnail is named `thumbnail/TN-base_name.jpg`
 * In piwigo > 2.4, the thumbnail is named `pwg_representative/base_name.jpg`
-* The HD can be inserted as usual as well in the `pwg_high`
 * Finally use the sync button
 
 
