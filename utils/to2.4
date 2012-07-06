@@ -1,0 +1,40 @@
+#!/bin/bash
+# Tool to adapt multimedia thumbnails stucture when migrating  
+# to piwigo 2.4  
+# 
+# This script needs to stay in PIWIGO_ROOT/plugins/piwigo-jplayer/utils
+#
+# Usage : 
+#  PIWIGO_ROOT/plugins/piwigo-jplayer/utils/to2.4
+S
+PWG_GALERIES=$(dirname $0)/../../../galleries
+
+# List of all supported files
+MEDIA_FILES=$(find $PWG_GALERIES  -type f \( -iname '*.webm'\
+                -o -iname '*.ogv'\
+                -o -iname '*.m4v'\
+                -o -iname '*.flv'\
+                -o -iname '*.mp3'\
+                -o -iname '*.ogg'\
+                -o -iname '*.oga'\
+                -o -iname '*.m4a'\
+                -o -iname '*.webma'\
+                -o -iname '*.fla'\
+                -o -iname '*.wav' \))
+
+# Loop over those files and move existing thumbnails
+for FILE in $MEDIA_FILES; do
+    DIR_NAME=$(dirname $FILE)
+    FILE_NAME=$(basename $FILE)
+    BASE_NAME=${FILE_NAME%.*}
+    THUMBNAIL=""
+    [[ -d $DIR_NAME/thumbnail/ ]] && THUMBNAIL=$(ls $DIR_NAME/thumbnail/ | grep TN-$BASE_NAME\.*) 
+    if [[ -n "$THUMBNAIL" ]]; then 
+        [[ -d $DIR_NAME/pwg_representative ]] || mkdir $DIR_NAME/pwg_representative
+        mv $DIR_NAME/thumbnail/TN-$BASE_NAME\.* $DIR_NAME/pwg_representative 
+        rename "s/TN-//" $DIR_NAME/pwg_representative/TN-*
+    fi
+done
+
+# Finally, remove remaining empty `thumbnail` dirs 
+find $PWG_GALERIES -type d -name thumbnail -empty | xargs --no-run-if-empty rmdir 
