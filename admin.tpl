@@ -18,6 +18,11 @@
           <input type="checkbox" name="autoplay" id="autoplay" value="true" {if $AUTOPLAY eq 'true'}checked="checked"{/if}/> 
         </label>  
       </li>
+      <li>
+        <label>Display thumbnail as poster:
+          <input type="checkbox" name="poster" id="poster" value="true" {if $POSTER eq 'true'}checked="checked"{/if}/>
+        </label>
+      </li>
     </ul>
     <input class="submit" type="submit" value="{'Submit'|@translate}" name="submit"/>
   </fieldset>

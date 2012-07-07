@@ -138,6 +138,18 @@ function render_media($content, $picture)
         $AUTOPLAY = 'play';
     }
 
+    // Picture representative to be used as poster image in the player 
+    $poster_url = NULL;
+    if ( isset($conf['jplayer_representative_as_poster']) 
+         && $conf['jplayer_representative_as_poster'] ) {
+        $poster_url = $picture['current']['src_image']->get_url();
+        $poster_url = embellish_url(get_gallery_home_url() . $poster_url);
+        if ( strpos($poster_url, "mimetype") ) {
+            // Ignore mimetype representatives because they're too small
+            $poster_url = NULL;
+        }
+    }
+
     // Load parameter, fallback to blue monday if unset 
     $skin = isset($conf['jplayer_skin']) ? $conf['jplayer_skin'] : 'bm';
 
@@ -152,6 +164,7 @@ function render_media($content, $picture)
     $template->assign(
         array(
             'JP_MEDIA_URL'     => embellish_url(get_gallery_home_url() . $picture['current']['element_url']),
+            'JP_POSTER'        => $poster_url, 
             'JPLAYER_PATH'     => JPLAYER_PATH,
             'JPLAYER_FULLPATH' => realpath(dirname(__FILE__)),
             'WIDTH'            => $width . 'px',

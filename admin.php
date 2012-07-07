@@ -8,6 +8,7 @@ global $template, $conf;
 // Load parameter
 $skin = $conf['jplayer_skin'];
 $autoplay = $conf['jplayer_autoplay'];
+$poster = $conf['jplayer_representative_as_poster'];
 
 // Available skins
 $available_skins = array(
@@ -31,6 +32,11 @@ if (isset($_POST['submit'])) {
              ' SET value="' . $autoplay . '" 
               WHERE param="jplayer_autoplay"';
     pwg_query($query);
+    $poster = isset($_POST['poster']) ? "true" : "false";
+    $query = 'UPDATE ' . CONFIG_TABLE .
+             ' SET value="' . $poster . '" 
+              WHERE param="jplayer_representative_as_poster"';
+    pwg_query($query);
 }
 
 // 
@@ -38,6 +44,7 @@ $template->assign(array(
     'SELECTED_SKIN'   => $skin,
     'AVAILABLE_SKINS' => $available_skins,
     'AUTOPLAY'        => $autoplay,
+    'POSTER'          => $poster,
 ));
 
 // Add our template to the global template
