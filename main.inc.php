@@ -140,7 +140,8 @@ function render_media($content, $picture)
 
     // Picture representative to be used as poster image in the player 
     $poster_url = NULL;
-    if ( isset($conf['jplayer_representative_as_poster']) 
+    if ( isset($picture['current']['src_image'])
+         && isset($conf['jplayer_representative_as_poster']) 
          && $conf['jplayer_representative_as_poster'] ) {
         $poster_url = $picture['current']['src_image']->get_url();
         $poster_url = embellish_url(get_gallery_home_url() . $poster_url);

@@ -19,7 +19,7 @@
         </label>  
       </li>
       <li>
-        <label>Display thumbnail as poster:
+        <label>Display thumbnail as poster (piwigo&gt;2.4):
           <input type="checkbox" name="poster" id="poster" value="true" {if $POSTER eq 'true'}checked="checked"{/if}/>
         </label>
       </li>
