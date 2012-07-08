@@ -1,6 +1,6 @@
 <?php 
 /*
-Version: 0.1
+Version: 0.2
 Plugin Name: jplayer
 Plugin URI: https://github.com/d-matt/piwigo-jplayer 
 Author: d-matt
