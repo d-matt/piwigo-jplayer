@@ -69,8 +69,10 @@ Credit
 Changelog
 ---------
 
-### Version 0.2 ()
+### Version 0.2 (2012/07/08)
 
+- Piwigo 2.4 compatibility
+- Add a parameter to use representative image in the video player
 - Add autoplay parameter
 
 ### Version 0.1 (2012/01/02)
