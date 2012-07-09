@@ -2,9 +2,10 @@
 /*
 Version: 0.3
 Plugin Name: jplayer
-Plugin URI: https://github.com/d-matt/piwigo-jplayer 
+Plugin URI: http://piwigo.org/ext/extension_view.php?eid=594
 Author: d-matt
 Description: jplayer integration for piwigo
+Author URI: https://github.com/d-matt/piwigo-jplayer
 */
 
 // Chech whether we are indeed included by Piwigo.
