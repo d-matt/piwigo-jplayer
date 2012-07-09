@@ -69,6 +69,11 @@ Credit
 Changelog
 ---------
 
+### Version 0.3 (2012/07/09)
+
+- Add a tool to publish new versions
+- Add a tool to convert thumbnails to representatives
+
 ### Version 0.2 (2012/07/08)
 
 - Piwigo 2.4 compatibility
