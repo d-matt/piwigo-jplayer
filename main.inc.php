@@ -44,6 +44,8 @@ add_event_handler('get_thumbnail_location', 'get_mimetype_icon', 60, 2);
 // piwigo > 2.4
 add_event_handler('get_mimetype_location', 'get_mimetype_icon', 60, 2);
 
+// Hook on to an event to filter videos that may appear twice (video.webm and video.m4v are the same video)
+add_event_handler('loc_end_index_thumbnails', 'filter_duplicates', 40, 2 );
 
 // Hook to a admin config page
 add_event_handler('get_admin_plugin_menu_links', 'jplayer_admin_menu' );
@@ -87,6 +89,7 @@ function render_media($content, $picture)
     $fileinfo = $getID3->analyze($picture['current']['path']);
 
     $extension = strtolower(get_extension($picture['current']['path']));
+    $basename = strtolower(get_filename_wo_extension($picture['current']['path']));
     $is_video = False;
 
 
@@ -160,18 +163,35 @@ function render_media($content, $picture)
         array('jp_content' => dirname(__FILE__)."/template/jp-". $skin .".tpl")
     );
 
+    $alternate_media_url = '';
+    $alternate_type = '';
+
+    if ($extension == 'webmv') {
+        if(file_exists($basename . '.m4v')) {
+            $alternate_media_url = str_replace('webm', 'm4v', $picture['current']['element_url']);
+            $alternate_type = 'm4v';
+        }
+    } else if ($extension == 'm4v') {
+        if(file_exists($basename . '.webm')) {
+            $alternate_media_url = str_replace('m4v', 'webm', $picture['current']['element_url']);
+            $alternate_type = 'webmv';
+        }
+    }
+
     // Assign the template variables
     // We use here the piwigo's get_gallery_home_url function to build 
     // the full URL as suggested by jplayer for flash fallback compatibility
     $template->assign(
         array(
             'JP_MEDIA_URL'     => embellish_url(get_gallery_home_url() . $picture['current']['element_url']),
-            'JP_POSTER'        => $poster_url, 
+            'ALT_JP_MEDIA_URL' => embellish_url(get_gallery_home_url() . $alternate_media_url),
+            'JP_POSTER'        => $poster_url,
             'JPLAYER_PATH'     => JPLAYER_PATH,
             'JPLAYER_FULLPATH' => realpath(dirname(__FILE__)),
             'WIDTH'            => $width . 'px',
             'HEIGHT'           => $height . 'px',
             'TYPE'             => $extension,
+            'ALT_TYPE'         => $alternate_type,
             'AUTOPLAY'         => $AUTOPLAY,
             'IS_VIDEO'         => $is_video,
         )
@@ -180,6 +200,24 @@ function render_media($content, $picture)
     // Return the rendered html
     $jp_content = $template->parse('jp_content', true);
     return $jp_content;
+}
+
+function filter_duplicates($tpl_thumbnails_var) {
+    $GLOBALS['video_unique_names'] = array();
+
+    function unique($var) {
+        if(in_array($var['name'],$GLOBALS['video_unique_names'])) {
+            return false;
+        } else {
+            if(get_extension($var['file']) == "m4v" || get_extension($var['file']) == "webm" ) {
+                array_push($GLOBALS['video_unique_names'],$var['name']);
+            }
+            return true;
+        }
+    }
+    $filtered_array = array_filter($tpl_thumbnails_var,"unique");
+    $GLOBALS['video_unique_names'] = null;
+    return $filtered_array;
 }
 
 function get_mimetype_icon ($location, $element_info)
