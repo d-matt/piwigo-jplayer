@@ -206,11 +206,11 @@ function filter_duplicates($tpl_thumbnails_var) {
     $GLOBALS['video_unique_names'] = array();
 
     function unique($var) {
-        if(in_array($var['name'],$GLOBALS['video_unique_names'])) {
+        if(in_array($var['NAME'],$GLOBALS['video_unique_names'])) {
             return false;
         } else {
             if(get_extension($var['file']) == "m4v" || get_extension($var['file']) == "webm" ) {
-                array_push($GLOBALS['video_unique_names'],$var['name']);
+                array_push($GLOBALS['video_unique_names'],$var['NAME']);
             }
             return true;
         }
