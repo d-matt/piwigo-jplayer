@@ -1,6 +1,6 @@
 <?php 
 /*
-Version: 0.4
+Version: 0.5
 Plugin Name: jplayer
 Plugin URI: http://piwigo.org/ext/extension_view.php?eid=594
 Author: d-matt
