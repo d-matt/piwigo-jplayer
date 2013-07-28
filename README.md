@@ -69,6 +69,16 @@ Credit
 Changelog
 ---------
 
+### Version 0.5 (2013/07/28)
+
+- Merged Pull Request: [upgraded jplayer and themes to 2.4.0](https://github.com/d-matt/piwigo-jplayer/pull/4) by [anthonydahanne](https://github.com/anthonydahanne)
+- Merged Pull Request: [upload video.m4v and video.webm, have piwigo consider it's the same video and have jplayer choose the best format for your browser](https://github.com/d-matt/piwigo-jplayer/pull/5) by [anthonydahanne](https://github.com/anthonydahanne)
+- update getid3 to 1.9.7
+
+### Version 0.4 (2012/07/09)
+
+- Distrib fix
+
 ### Version 0.3 (2012/07/09)
 
 - Add a tool to publish new versions
