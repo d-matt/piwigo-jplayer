@@ -69,6 +69,10 @@ Credit
 Changelog
 ---------
 
+### Version 0.6 (2013/07/29)
+
+-  fix #6 : use $tpl_thumbnails_var['NAME'] instead of $tpl_thumbnails_var['name'] to find duplicates videos
+
 ### Version 0.5 (2013/07/28)
 
 - Merged Pull Request: [upgraded jplayer and themes to 2.4.0](https://github.com/d-matt/piwigo-jplayer/pull/4) by [anthonydahanne](https://github.com/anthonydahanne)
