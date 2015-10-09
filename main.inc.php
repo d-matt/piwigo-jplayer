@@ -18,7 +18,7 @@ global $conf;
 
 // Register the allowed extentions to the global conf in order
 // to sync them with other contents
-$jp_extensions = array(
+$conf['media_ext'] = array(
     'mp3', 
     'm4a', 
     'ogg', 
@@ -33,7 +33,7 @@ $jp_extensions = array(
     'webmv',
     'flv',
 );
-$conf['file_ext'] = array_merge($conf['file_ext'], $jp_extensions);
+$conf['file_ext'] = array_merge($conf['file_ext'], $conf['media_ext']);
 
 // Hook on to an event to display videos as standard images
 add_event_handler('render_element_content', 'render_media', 40, 2 );
@@ -92,8 +92,12 @@ function render_media($content, $picture)
     $basename = strtolower(get_filename_wo_extension($picture['current']['path']));
     $is_video = False;
 
-
-    if(isset($fileinfo['video'])) {
+	// if not a media extension, do nothing
+	if (!in_array($extension, $conf['media_ext'])) {
+		return $content;
+	}
+	// if video
+    else if(isset($fileinfo['video'])) {
         // -- video file --
         $is_video = True;
         if ($extension == 'webm') $extension = 'webmv'; 
@@ -113,6 +117,7 @@ function render_media($content, $picture)
             $height = intval( 9 * ($width / 16 ));
         } 
     }
+	// if audio only
     else {
         // -- audio only file --
         if ($extension == 'webm') $extension = 'webma';
