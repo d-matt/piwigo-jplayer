@@ -96,7 +96,6 @@ function render_media($content, $picture)
 	if (!in_array($extension, $conf['media_ext'])) {
 		return $content;
 	}
-	// if video
     else if(isset($fileinfo['video'])) {
         // -- video file --
         $is_video = True;
@@ -117,7 +116,6 @@ function render_media($content, $picture)
             $height = intval( 9 * ($width / 16 ));
         } 
     }
-	// if audio only
     else {
         // -- audio only file --
         if ($extension == 'webm') $extension = 'webma';
