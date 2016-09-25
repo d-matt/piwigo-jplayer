@@ -69,6 +69,10 @@ Credit
 Changelog
 ---------
 
+### Version 0.7 (2016/09/25)
+
+- update getid3 to 1.9.12
+
 ### Version 0.6 (2013/07/29)
 
 -  fix #6 : use $tpl_thumbnails_var['NAME'] instead of $tpl_thumbnails_var['name'] to find duplicates videos
